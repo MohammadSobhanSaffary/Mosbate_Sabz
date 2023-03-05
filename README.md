@@ -1,4 +1,4 @@
-#              <font color="green">مثبت سبز</font>
+#             <span style="color: green">مثبت سبز</span>
 
 ![mosbate sabz](https://mosbatesabz.com/wp-content/uploads/2022/01/logoo-mosbatesabzzzzz.png)
 
