@@ -1,3 +1,5 @@
 export const Persian = {
-  Tea: "چایی",
+  Weather: "آب و هوا",
+  Products: "محصولات",
+  Cart: "سبد خرید",
 };

@@ -1,8 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: "BNazanin";
+  src: url("../../public/assets/font/B-NAZANIN.TTF");
+}
 * {
   padding: 0;
   margin: 0;
+  font-family: "BNazanin";
 }
-  
+.button:focus {
+  animation: myAnimmation 1s 1;
+  opacity: 60%;
+  background: #c3c3c3;
+  transition: 1s;
+}
+.button:click {
+  opacity: 60%;
+  background: #c3c3c3;
+  transition: 1s;
+  cursor: pointer;
+}
+
+@keyframes myAnimmation {
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

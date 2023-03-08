@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { count } from "console";
 
 interface Product {
   id: number;
@@ -75,30 +76,47 @@ const globalSlice = createSlice({
         finalPrice += Number(el.product.price) * el.count;
       });
     },
+    
     reduceCartItem: (state, action: PayloadAction<number>) => {
-      if (state.cartItems.length > 0) {
+      if (state.cartItems.length > 1) {
+        state.cartItems = state.cartItems.map((el: any) => {
+          if (el.id === action.payload) {
+            return { ...el, count: el.count - 1 };
+          } else {
+            return el;
+          }
+        });
+      } else if (state.cartItems.length === 1) {
         state.cartItems = state.cartItems.filter(
-          (el: any) => el.product.id !== action.payload
+          (el: any) => el.id === action.payload
         );
       }
     },
+
     addCartItem: (state, action: PayloadAction<number>) => {
       let isAvailbleInCartItem: boolean = false;
+      const choosenProduct = state.products.filter(
+        (el: any) => el.id === action.payload
+      )[0];
       state.cartItems.forEach((el: any) => {
         el.product.id === action.payload ? (isAvailbleInCartItem = true) : null;
       });
       if (isAvailbleInCartItem) {
-        state.cartItems = state.cartItems.map((el: any) =>
-         {
+        state.cartItems = state.cartItems.map((el: any) => {
           if (el.product.id === action.payload)
             return { ...el, count: el.count + 1 };
-      
-          return (el)
-    
-        );
+
+          return el;
+        });
+      } else {
+        state.cartItems = [
+          ...state.cartItems,
+          { count: 1, product: choosenProduct },
+        ];
       }
     },
   },
 });
-export const {} = globalSlice.actions;
+export const { addCartItem, reduceCartItem, finalPrice, setProduct } =
+  globalSlice.actions;
 export default globalSlice.reducer;
